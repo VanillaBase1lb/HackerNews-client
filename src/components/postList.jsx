@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom/client";
-
-import { HiExternalLink, HiFire, HiOutlineChevronRight } from "react-icons/hi";
+import React,  { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom/client';
 
 function RefreshButton({ onClick }) {
   return (
@@ -94,4 +92,3 @@ export default function PostList() {
     </div>
   );
 }
-
