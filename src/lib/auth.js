@@ -19,3 +19,7 @@ export async function login({ username, password }) {
 		}, 1000);
 	});
 }
+
+export async function signout(){
+	// signout api call here
+}
