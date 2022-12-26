@@ -1,36 +1,20 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom/client";
-import { createBookmark } from "../lib/bookmark";
+import { deleteBookmark, fetchBookmarks } from "../lib/bookmark";
+import axios from "axios";
 
 function HackerNewsTopStories() {
   const [topStories, setTopStories] = useState([]);
 
   useEffect(() => {
-    // Make the initial request to get the top stories
-    const xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
-      true
-    );
-    xhr.send();
-
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        // Success! Save the top stories to state
-        const data = JSON.parse(xhr.responseText);
-        setTopStories(data);
-        // console.log(setTopStories);
-      } else {
-        // Something went wrong. Handle the error.
-        console.error(xhr.statusText);
-      }
-    };
+    fetchBookmarks().then((data) => {
+      setTopStories(data);
+    });
   }, []); // This empty array ensures the effect only runs once when the component mounts
 
   return (
     <div>
-      {topStories.slice(0, 50).map((storyId) => (
+      {topStories.map((storyId) => (
         <div key={storyId}>
           {/* Make a request for each story and render its data */}
           <HackerNewsStory storyId={storyId} />
@@ -67,10 +51,10 @@ function HackerNewsStory({ storyId }) {
     };
   }, [storyId]); // This array ensures the effect runs again when the storyId prop changes
 
-  async function bookmark_create() {
-    console.log("create clicked");
+  async function bookmark_delete() {
+    console.log("delete clicked");
     console.log(storyId);
-    await createBookmark(storyId);
+    await deleteBookmark(storyId);
   }
 
   return (
@@ -80,16 +64,16 @@ function HackerNewsStory({ storyId }) {
           <a href={story.url}>
             <p className="text-xl font-bold mb-2">{story.title}</p>
           </a>
-          {story.score > 100 && (
+          {story.score > 150 && (
             <img className="mb-2" src="../src/assets/Fire.png"></img>
           )}
-          <p className="text-lg mb-2">Author - {story.by}</p>
+          <p className="text-lg mb-2">Topic - {story.type}</p>
           {/* <p>{story.score}</p> */}
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            onClick={bookmark_create}
+            onClick={bookmark_delete}
           >
-            Save
+            Delete
           </button>
         </div>
       ) : (
