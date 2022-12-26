@@ -7,7 +7,7 @@ export default function AllPosts() {
 	return (
 		<>
 			<PostList />
-            <PostList />
+            {/* <PostList /> */}
 		</>
 	);
 }
