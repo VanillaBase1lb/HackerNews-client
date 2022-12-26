@@ -1,18 +1,20 @@
 import React, { createContext, useState } from "react";
 
-const UserContext = createContext(undefined);
-const UserDispatchContext = createContext(undefined);
+
+const UserContext = createContext(undefined)
+const UserDispatchContext = createContext(undefined)
 
 function UserProvider({ children }) {
-  const [userDetails, setUserDetails] = useState();
+    const [userDetails, setUserDetails] = useState();
 
-  return (
-    <UserContext.Provider value={userDetails}>
-      <UserDispatchContext.Provider value={setUserDetails}>
-        {children}
-      </UserDispatchContext.Provider>
-    </UserContext.Provider>
-  );
+    return (
+        <UserContext.Provider value={userDetails}>
+          <UserDispatchContext.Provider value={setUserDetails}>
+            {children}
+          </UserDispatchContext.Provider>
+        </UserContext.Provider>
+      );
+
 }
 
 export { UserProvider, UserContext, UserDispatchContext };

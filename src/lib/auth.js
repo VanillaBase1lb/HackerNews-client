@@ -3,37 +3,23 @@ import axios from "axios";
 const AUTH_URL = "http://localhost:9898";
 
 export async function register({ username, password }) {
-  return await axios
-    .post(
-      `${AUTH_URL}/signup`,
-      { username, password },
-      { withCredentials: true }
-    )
-    .then((res) => res.data);
-  // return new Promise((resolve, reject) => {
-  // 	setTimeout(() => {
-  // 		resolve({ user: { username: "John Cena" } });
-  // 	}, 1000);
-  // });
+	// return await axios.post(`${AUTH_URL}/signup`, {username, password}).then(res=>res.data)
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve({ user: { username: "John Cena" } });
+		}, 1000);
+	});
 }
 
 export async function login({ username, password }) {
-  return await axios
-    .post(
-      `${AUTH_URL}/login`,
-      { username, password },
-      { withCredentials: true }
-    )
-    .then((res) => res.data);
-  // return new Promise((resolve, reject) => {
-  // 	setTimeout(() => {
-  // 		resolve({ user: { username: "John Cena" } });
-  // 	}, 1000);
-  // });
+	// return await axios.post(`${AUTH_URL}/login`, {username, password}).then(res=>res.data)
+	return new Promise((resolve, reject) => {
+		setTimeout(() => {
+			resolve({ user: { username: "John Cena" } });
+		}, 1000);
+	});
 }
 
-export async function logout() {
-  return await axios
-    .get(`${AUTH_URL}/logout`, { withCredentials: true })
-    .then((res) => res.data);
+export async function signout(){
+	// signout api call here
 }
