@@ -25,7 +25,7 @@ function HackerNewsTopStories() {
   
 	return (
 	  <div>
-		{topStories.map((storyId) => (
+		{topStories.slice(0,50).map((storyId) => (
 		  <div key={storyId}>
 			{/* Make a request for each story and render its data */}
 			<HackerNewsStory storyId={storyId} />
@@ -64,8 +64,8 @@ function HackerNewsTopStories() {
       {story ? (
         <div className='inline-block'>
           <a href={story.url}><p className='text-xl font-bold mb-2'>{story.title}</p></a>
-		  {story.score > 150 && <img className='mb-2' src='../src/assets/Fire.png'></img>}
-		  <p className='text-lg mb-2'>Topic - {story.type}</p>
+		  {story.score > 100 && <img className='mb-2' src='../src/assets/Fire.png'></img>}
+		  <p className='text-lg mb-2'>Author - {story.by}</p>
           {/* <p>{story.score}</p> */}
           <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Save</button>
         </div>
