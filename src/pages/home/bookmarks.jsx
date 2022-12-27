@@ -1,16 +1,15 @@
 import { useContext, useEffect } from "react";
-import PostList from "../../components/postList";
+import BookmarkList from "../../components/bookmarkList";
 import { UserContext } from "../../context/userContext";
 
 export default function Bookmarks() {
-    const userDetails = useContext(UserContext)
+  const userDetails = useContext(UserContext);
 
-    
-	useEffect(() => {}, []);
+  useEffect(() => {}, []);
 
-	return (
-		<>
-			<PostList />
-		</>
-	);
+  return (
+    <>
+      <BookmarkList />
+    </>
+  );
 }

@@ -2,11 +2,11 @@ import { useEffect } from "react";
 import PostList from "../../components/postList";
 
 export default function AllPosts() {
-	useEffect(() => {}, []);
+  useEffect(() => {}, []);
 
-	return (
-		<>
-			<PostList />
-		</>
-	);
+  return (
+    <>
+      <PostList />
+    </>
+  );
 }
