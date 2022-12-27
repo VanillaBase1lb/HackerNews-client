@@ -16,5 +16,6 @@ export async function deleteBookmark(id, username) {
 
 export async function fetchBookmarks(username) {
   return await axios
-    .get(`${AUTH_URL}/fetch?username=${username}`).then(res=>res.data)
+    .get(`${AUTH_URL}/fetch?username=${username}`)
+    .then((res) => res.data);
 }

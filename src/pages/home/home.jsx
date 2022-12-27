@@ -9,50 +9,50 @@ import { UserContext, UserDispatchContext } from "../../context/userContext";
 import { signout } from "../../lib/auth";
 
 export default function HomePage() {
-	const [mobileNavOpen, setMobileNavOpen] = useState(false);
-	const navigate = useNavigate();
-	const userDetails = useContext(UserContext);
-	const setUserDetails = useContext(UserDispatchContext);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const navigate = useNavigate();
+  const userDetails = useContext(UserContext);
+  const setUserDetails = useContext(UserDispatchContext);
 
-	console.log("userdetails", userDetails);
+  console.log("userdetails", userDetails);
 
-	async function fireSignout() {
-		await signout()
-		setUserDetails(null)
-		navigate("/");
-	}
-	return (
-		<>
-			{/* Page Container */}
-			<div
-				id="page-container"
-				className="flex flex-col mx-auto w-full min-h-screen bg-gray-100"
-			>
-				{/* Page Header */}
-				<header
-					id="page-header"
-					className="flex flex-none items-center bg-white shadow-sm z-1"
-				>
-					<div className="container xl:max-w-7xl mx-auto px-4 lg:px-8">
-						<div className="flex justify-between py-4">
-							{/* Left Section */}
-							<div className="flex items-center">
-								{/* Logo */}
-								<a
-									href="#"
-									className="group inline-flex items-center space-x-2 font-bold text-lg tracking-wide text-gray-700 hover:text-blue-600 active:text-gray-700"
-								>
-									<div
-										className="text-4xl text-blue-700"
-										style={{ fontFamily: "Permanent Marker" }}
-									>
-										{"<HN/>"}
-									</div>
-									<span>HackerNews</span>
-								</a>
-								{/* END Logo */}
-							</div>
-							{/* END Left Section */}
+  async function fireSignout() {
+    await signout();
+    setUserDetails(null);
+    navigate("/");
+  }
+  return (
+    <>
+      {/* Page Container */}
+      <div
+        id="page-container"
+        className="flex flex-col mx-auto w-full min-h-screen bg-gray-100"
+      >
+        {/* Page Header */}
+        <header
+          id="page-header"
+          className="flex flex-none items-center bg-white shadow-sm z-1"
+        >
+          <div className="container xl:max-w-7xl mx-auto px-4 lg:px-8">
+            <div className="flex justify-between py-4">
+              {/* Left Section */}
+              <div className="flex items-center">
+                {/* Logo */}
+                <a
+                  href="#"
+                  className="group inline-flex items-center space-x-2 font-bold text-lg tracking-wide text-gray-700 hover:text-blue-600 active:text-gray-700"
+                >
+                  <div
+                    className="text-4xl text-blue-700"
+                    style={{ fontFamily: "Permanent Marker" }}
+                  >
+                    {"<HN/>"}
+                  </div>
+                  <span>HackerNews</span>
+                </a>
+                {/* END Logo */}
+              </div>
+              {/* END Left Section */}
 
               {/* Right Section */}
               <div className="flex items-center space-x-1 lg:space-x-5">
@@ -111,31 +111,31 @@ export default function HomePage() {
                 </nav>
                 {/* END Desktop Navigation */}
 
-								{/* Toggle Mobile Navigation */}
-								<div className="lg:hidden">
-									<button
-										type="button"
-										className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-6 rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none"
-										onClick={() => setMobileNavOpen(!mobileNavOpen)}ety 
-									>
-										<svg
-											fill="currentColor"
-											viewBox="0 0 20 20"
-											xmlns="http://www.w3.org/2000/svg"
-											className="hi-solid hi-menu inline-block w-5 h-5"
-										>
-											<path
-												fillRule="evenodd"
-												d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-												clipRule="evenodd"
-											/>
-										</svg>
-									</button>
-								</div>
-								{/* END Toggle Mobile Navigation */}
-							</div>
-							{/* END Right Section */}
-						</div>
+                {/* Toggle Mobile Navigation */}
+                <div className="lg:hidden">
+                  <button
+                    type="button"
+                    className="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-6 rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none"
+                    onClick={() => setMobileNavOpen(!mobileNavOpen)}
+                  >
+                    <svg
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="hi-solid hi-menu inline-block w-5 h-5"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                {/* END Toggle Mobile Navigation */}
+              </div>
+              {/* END Right Section */}
+            </div>
 
             {/* Mobile Navigation */}
             <div className={`lg:hidden ${mobileNavOpen ? "" : "hidden"}`}>
@@ -161,11 +161,11 @@ export default function HomePage() {
         </header>
         {/* END Page Header */}
 
-				{/* Page Content */}
-				<main id="page-content" className="flex flex-auto flex-col max-w-full">
-					{/* Page Section */}
-					<div className="container xl:max-w-7xl mx-auto p-4 pt-2 lg:p-8 lg:pt-2">
-						{/*
+        {/* Page Content */}
+        <main id="page-content" className="flex flex-auto flex-col max-w-full">
+          {/* Page Section */}
+          <div className="container xl:max-w-7xl mx-auto p-4 pt-2 lg:p-8 lg:pt-2">
+            {/*
 
               ADD YOUR MAIN CONTENT BELOW
 
