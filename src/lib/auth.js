@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AUTH_URL = "http://localhost:9898";
+const AUTH_URL = "http://54.249.173.192:9898";
 
 export async function register({ username, password }) {
   return await axios
