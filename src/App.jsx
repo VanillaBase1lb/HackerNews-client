@@ -1,12 +1,12 @@
 import { useState } from "react";
 import {
-	Routes,
-	Route,
-	Link,
-	useNavigate,
-	useLocation,
-	Navigate,
-	Outlet,
+  Routes,
+  Route,
+  Link,
+  useNavigate,
+  useLocation,
+  Navigate,
+  Outlet,
 } from "react-router-dom";
 
 import reactLogo from "./assets/react.svg";
@@ -18,6 +18,7 @@ import RequireAuth from "./pages/requireAuth";
 import AllPosts from "./pages/home/allPosts";
 import Bookmarks from "./pages/home/bookmarks";
 import { UserContext, UserProvider } from "./context/userContext";
+import CommentsPage from "./pages/comments";
 
 function App() {
 	return (
@@ -25,6 +26,7 @@ function App() {
 			<Routes>
 				<Route path="/" element={<HomePage />}>
 					<Route path="/" element={<AllPosts />} />
+					<Route path="/post/:postid" element={<CommentsPage />}/>
 					<Route
 						path="/bookmarks"
 						element={

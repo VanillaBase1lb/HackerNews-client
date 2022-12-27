@@ -6,25 +6,27 @@ import axios from "axios";
 function HackerNewsTopStories() {
   const [topStories, setTopStories] = useState([]);
 
+  const [refreshList, setRefreshList] = useState(false)
+
   useEffect(() => {
     fetchBookmarks().then((data) => {
       setTopStories(data);
     });
-  }, []); // This empty array ensures the effect only runs once when the component mounts
+  }, [refreshList]); // This empty array ensures the effect only runs once when the component mounts
 
   return (
     <div>
       {topStories.map((storyId) => (
         <div key={storyId}>
           {/* Make a request for each story and render its data */}
-          <HackerNewsStory storyId={storyId} />
+          <HackerNewsStory storyId={storyId} setRefreshList={setRefreshList} refreshList={refreshList}/>
         </div>
       ))}
     </div>
   );
 }
 
-function HackerNewsStory({ storyId }) {
+function HackerNewsStory({ storyId, setRefreshList, refreshList }) {
   const [story, setStory] = useState(null);
   // const [count, setCount] = useState(0);
 
@@ -54,6 +56,7 @@ function HackerNewsStory({ storyId }) {
   async function bookmark_delete() {
     console.log("delete clicked");
     console.log(storyId);
+    setRefreshList(!refreshList)
     await deleteBookmark(storyId);
   }
 
@@ -83,7 +86,7 @@ function HackerNewsStory({ storyId }) {
   );
 }
 
-export default function PostList() {
+export default function BookmarkList() {
   return (
     <div>
       <HackerNewsTopStories />
