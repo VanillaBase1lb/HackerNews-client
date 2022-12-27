@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const AUTH_URL = "http://localhost:9898";
+const AUTH_URL = "http://ec2-3-134-96-65.us-east-2.compute.amazonaws.com:9898";
 
 export async function register({ username, password }) {
   return await axios
     .post(
       `${AUTH_URL}/signup`,
       { username, password },
-      { withCredentials: true }
     )
     .then((res) => res.data);
   // return new Promise((resolve, reject) => {
@@ -22,7 +21,6 @@ export async function login({ username, password }) {
     .post(
       `${AUTH_URL}/login`,
       { username, password },
-      { withCredentials: true }
     )
     .then((res) => res.data);
   // return new Promise((resolve, reject) => {
@@ -35,6 +33,6 @@ export async function login({ username, password }) {
 export async function signout() {
   // signout api call here
   return await axios
-    .get(`${AUTH_URL}/logout`, { withCredentials: true })
+    .get(`${AUTH_URL}/logout`)
     .then((res) => res.data);
 }

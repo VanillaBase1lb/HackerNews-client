@@ -1,28 +1,20 @@
 import axios from "axios";
 
-const AUTH_URL = "http://localhost:9899";
+const AUTH_URL = "http://ec2-3-134-96-65.us-east-2.compute.amazonaws.com:9899";
 
-export async function createBookmark(id) {
+export async function createBookmark(id, username) {
   return await axios
-    .post(`${AUTH_URL}/create`, { id }, { withCredentials: true })
+    .post(`${AUTH_URL}/create`, { id, username })
     .then((res) => res.data);
 }
 
 export async function deleteBookmark(id) {
   return await axios
-    .post(`${AUTH_URL}/delete`, { id }, { withCredentials: true })
+    .post(`${AUTH_URL}/delete`, { id })
     .then((res) => res.data);
 }
 
-export async function fetchBookmarks() {
+export async function fetchBookmarks(username) {
   return await axios
-    .get(`${AUTH_URL}/fetch`, { withCredentials: true })
-    .then((res) => {
-      let bookmarks = [];
-      for (let i = 0; i < res.data.length; i++) {
-        bookmarks.push(res.data[i].id);
-      }
-      console.log(bookmarks);
-      return bookmarks;
-    });
+    .get(`${AUTH_URL}/fetch?username=${username}`).then(res=>res.data)
 }
