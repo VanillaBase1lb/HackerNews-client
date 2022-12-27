@@ -21,25 +21,25 @@ import { UserContext, UserProvider } from "./context/userContext";
 import CommentsPage from "./pages/comments";
 
 function App() {
-	return (
-		<UserProvider>
-			<Routes>
-				<Route path="/" element={<HomePage />}>
-					<Route path="/" element={<AllPosts />} />
-					<Route path="/post/:postid" element={<CommentsPage />}/>
-					<Route
-						path="/bookmarks"
-						element={
-							<RequireAuth>
-								<Bookmarks />
-							</RequireAuth>
-						}
-					/>
-				</Route>
-				<Route path="/login" element={<AuthPage />} />
-			</Routes>
-		</UserProvider>
-	);
+  return (
+    <UserProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />}>
+          <Route path="/" element={<AllPosts />} />
+          <Route path="/post/:postid" element={<CommentsPage />} />
+          <Route
+            path="/bookmarks"
+            element={
+              <RequireAuth>
+                <Bookmarks />
+              </RequireAuth>
+            }
+          />
+        </Route>
+        <Route path="/login" element={<AuthPage />} />
+      </Routes>
+    </UserProvider>
+  );
 }
 
 export default App;
