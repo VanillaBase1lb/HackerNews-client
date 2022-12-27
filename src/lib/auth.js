@@ -7,7 +7,7 @@ export async function register({ username, password }) {
     .post(
       `${AUTH_URL}/signup`,
       { username, password },
-      { withCredentials: true }
+      { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
     )
     .then((res) => res.data);
   // return new Promise((resolve, reject) => {
@@ -22,7 +22,7 @@ export async function login({ username, password }) {
     .post(
       `${AUTH_URL}/login`,
       { username, password },
-      { withCredentials: true }
+      { withCredentials: true, headers: { "Access-Control-Allow-Origin": "*" } }
     )
     .then((res) => res.data);
   // return new Promise((resolve, reject) => {
@@ -35,6 +35,9 @@ export async function login({ username, password }) {
 export async function signout() {
   // signout api call here
   return await axios
-    .get(`${AUTH_URL}/logout`, { withCredentials: true })
+    .get(`${AUTH_URL}/logout`, {
+      withCredentials: true,
+      headers: { "Access-Control-Allow-Origin": "*" },
+    })
     .then((res) => res.data);
 }
