@@ -3,13 +3,11 @@ import ReactDOM from "react-dom/client";
 import { createBookmark } from "../lib/bookmark";
 import { HiExternalLink, HiFire, HiOutlineChevronRight } from "react-icons/hi";
 
-function RefreshButton() {
-  const [refresh, setRefresh] = useState(false);
-
+function RefreshButton({ onClick }) {
   return (
-    <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      onClick={() => setRefresh(!refresh)}
+    <button 
+      className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+      onClick={onClick}
     >
       Refresh
     </button>
@@ -19,17 +17,13 @@ function RefreshButton() {
 function HackerNewsTopStories() {
   const [topStories, setTopStories] = useState([]);
 
-  useEffect(() => {
-    // Make the initial request to get the top stories
+  const refreshTopStories = () => {
+    // Make a request to the API to get the latest list of top stories
     const xhr = new XMLHttpRequest();
-    xhr.open(
-      "GET",
-      "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
-      true
-    );
+    xhr.open('GET', 'https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty', true);
     xhr.send();
 
-    xhr.onload = function () {
+    xhr.onload = function() {
       if (xhr.status === 200) {
         // Success! Save the top stories to state
         const data = JSON.parse(xhr.responseText);
@@ -39,11 +33,14 @@ function HackerNewsTopStories() {
         console.error(xhr.statusText);
       }
     };
-  }, []); // This empty array ensures the effect only runs once when the component mounts
+  }
+
+  useEffect(refreshTopStories, []); // Make the initial request to get the top stories when the component mounts
 
   return (
     <div>
-      {topStories.slice(0, 50).map((storyId) => (
+      <RefreshButton onClick={refreshTopStories} />
+      {topStories.slice(0,50).map((storyId) => (
         <div key={storyId}>
           {/* Make a request for each story and render its data */}
           <HackerNewsStory storyId={storyId} />
@@ -113,7 +110,6 @@ function HackerNewsStory({ storyId }) {
 export default function PostList() {
   return (
     <div>
-      <RefreshButton />
       <HackerNewsTopStories />
     </div>
   );
