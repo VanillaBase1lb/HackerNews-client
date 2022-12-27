@@ -78,7 +78,9 @@ function AuthPage() {
                   >
                     {"<HN/>"}
                   </div>
-                  <span>HackerNews</span>
+                  <a href="/">
+                    <span>HackerNews</span>
+                  </a>
                 </h1>
                 <p className="text-gray-500">
                   Please sign in to manage bookmarks
