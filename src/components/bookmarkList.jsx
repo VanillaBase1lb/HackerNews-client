@@ -25,7 +25,7 @@ function HackerNewsTopStories() {
       setTopStories(data);
     }
     getBookmarks();
-  }, []);
+  }, [refreshList]);
 
   return (
     <div>
