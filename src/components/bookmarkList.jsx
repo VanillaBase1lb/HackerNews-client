@@ -20,20 +20,7 @@ function HackerNewsTopStories() {
 
   useEffect(() => {
     async function getBookmarks() {
-      const data = await fetchBookmarks(userDetails.username).then(
-        (res) => res.data
-      );
-      console.log("data: ", data);
-      setTopStories(data);
-    }
-    getBookmarks();
-  }, [refreshList]);
-
-  useEffect(() => {
-    async function getBookmarks() {
-      const data = await fetchBookmarks(userDetails.username).then(
-        (res) => res.data
-      );
+      const data = await fetchBookmarks(userDetails.username);
       console.log("data: ", data);
       setTopStories(data);
     }
@@ -44,10 +31,10 @@ function HackerNewsTopStories() {
     <div>
       {topStories
         ? topStories.map((story) => (
-            <div key={story.id}>
+            <div key={story}>
               {/* Make a request for each story and render its data */}
               <HackerNewsStory
-                storyId={story.id}
+                storyId={story}
                 setRefreshList={setRefreshList}
                 refreshList={refreshList}
               />

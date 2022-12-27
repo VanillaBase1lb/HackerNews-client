@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const AUTH_URL = "http://ec2-3-134-96-65.us-east-2.compute.amazonaws.com:9899";
+const AUTH_URL = "http://localhost:9899";
 
 export async function createBookmark(id, username) {
   return await axios
