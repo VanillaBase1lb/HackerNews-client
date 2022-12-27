@@ -17,7 +17,7 @@ export default function HomePage() {
   console.log("userdetails", userDetails);
 
   async function fireSignout() {
-    await signout();
+    // await signout();
     setUserDetails(null);
     navigate("/");
   }
