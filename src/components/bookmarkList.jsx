@@ -5,46 +5,55 @@ import axios from "axios";
 import { UserContext } from "../context/userContext";
 import PacmanLoader from "react-spinners/PacmanLoader";
 import {
-	HiExternalLink,
-	HiFire,
-	HiOutlineChevronRight,
-	HiRefresh,
+  HiExternalLink,
+  HiFire,
+  HiOutlineChevronRight,
+  HiRefresh,
 } from "react-icons/hi";
 import { Link } from "react-router-dom";
-
 
 function HackerNewsTopStories() {
   const [topStories, setTopStories] = useState([]);
 
-  const [refreshList, setRefreshList] = useState(false)
-  const userDetails = useContext(UserContext)
+  const [refreshList, setRefreshList] = useState(false);
+  const userDetails = useContext(UserContext);
 
   useEffect(() => {
     async function getBookmarks() {
-      const data = await fetchBookmarks(userDetails.username).then(res=>res.data)
-      console.log("data: ", data)
-      setTopStories(data)
+      const data = await fetchBookmarks(userDetails.username).then(
+        (res) => res.data
+      );
+      console.log("data: ", data);
+      setTopStories(data);
     }
-    getBookmarks()
-  }, [refreshList]); 
-  
+    getBookmarks();
+  }, [refreshList]);
+
   useEffect(() => {
     async function getBookmarks() {
-      const data = await fetchBookmarks(userDetails.username).then(res=>res.data)
-      console.log("data: ", data)
-      setTopStories(data)
+      const data = await fetchBookmarks(userDetails.username).then(
+        (res) => res.data
+      );
+      console.log("data: ", data);
+      setTopStories(data);
     }
-    getBookmarks()
+    getBookmarks();
   }, []);
 
   return (
     <div>
-      {topStories ? topStories.map((story) => (
-        <div key={story.id}>
-          {/* Make a request for each story and render its data */}
-          <HackerNewsStory storyId={story.id} setRefreshList={setRefreshList} refreshList={refreshList}/>
-        </div>
-      )):null}
+      {topStories
+        ? topStories.map((story) => (
+            <div key={story.id}>
+              {/* Make a request for each story and render its data */}
+              <HackerNewsStory
+                storyId={story.id}
+                setRefreshList={setRefreshList}
+                refreshList={refreshList}
+              />
+            </div>
+          ))
+        : null}
     </div>
   );
 }
@@ -52,6 +61,7 @@ function HackerNewsTopStories() {
 function HackerNewsStory({ storyId, setRefreshList, refreshList }) {
   const [story, setStory] = useState(null);
   const [loadingStory, setLoadingStory] = useState(true);
+  const userDetails = useContext(UserContext);
   useEffect(() => {
     // Make a request for the story data
     const xhr = new XMLHttpRequest();
@@ -75,44 +85,47 @@ function HackerNewsStory({ storyId, setRefreshList, refreshList }) {
     };
   }, [storyId]); // This array ensures the effect runs again when the storyId prop changes
 
-  async function bookmark_delete() {
+  async function bookmark_delete(storyId) {
     console.log("delete clicked");
     console.log(storyId);
-    setRefreshList(!refreshList)
-    await deleteBookmark(storyId);
+    await deleteBookmark(storyId, userDetails.username);
+    setRefreshList(!refreshList);
   }
 
   return (
     <div className="p-5 bg-white border-2 border-white shadow-sm hover:border-blue-400 transition rounded-lg my-2">
-    <div className="m-auto">
-      <PacmanLoader size={30} loading={loadingStory} color={"#818cf8"} />
-    </div>
-    {story ? (
-      <div className="flex items-center justify-between">
-        <div className="inline-block">
-          <div className="flex items-center hover:underline hover:text-indigo-400 transition-all duration-200  text-slate-600">
-            <a href={story.url}>
-              <p className="text-lg font-bold mb-2">{story.title}</p>
-            </a>
-            {story.score > 100 && (
-              <HiFire className="text-xl mb-2 ml-1 text-rose-600" />
-            )}
-          </div>
-
-          <p className="text-lg mb-2">Author - {story.by}</p>
-          {/* <p>{story.score}</p> */}
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => addBookmark(story.id)}>
-            Save
-          </button>
-        </div>
-        <div>
-          <Link to={`/post/${storyId}`}>
-            <HiOutlineChevronRight className="text-4xl text-indigo-400" />
-          </Link>
-        </div>
+      <div className="m-auto">
+        <PacmanLoader size={30} loading={loadingStory} color={"#818cf8"} />
       </div>
-    ) : null}
-  </div>
+      {story ? (
+        <div className="flex items-center justify-between">
+          <div className="inline-block">
+            <div className="flex items-center hover:underline hover:text-indigo-400 transition-all duration-200  text-slate-600">
+              <a href={story.url}>
+                <p className="text-lg font-bold mb-2">{story.title}</p>
+              </a>
+              {story.score > 100 && (
+                <HiFire className="text-xl mb-2 ml-1 text-rose-600" />
+              )}
+            </div>
+
+            <p className="text-lg mb-2">Author - {story.by}</p>
+            {/* <p>{story.score}</p> */}
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={() => bookmark_delete(story.id)}
+            >
+              Delete
+            </button>
+          </div>
+          <div>
+            <Link to={`/post/${storyId}`}>
+              <HiOutlineChevronRight className="text-4xl text-indigo-400" />
+            </Link>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }
 

@@ -8,12 +8,13 @@ export async function createBookmark(id, username) {
     .then((res) => res.data);
 }
 
-export async function deleteBookmark(id) {
-  return await axios.post(`${AUTH_URL}/delete`, { id }).then((res) => res.data);
+export async function deleteBookmark(id, username) {
+  return await axios
+    .post(`${AUTH_URL}/delete`, { id, username })
+    .then((res) => res.data);
 }
 
 export async function fetchBookmarks(username) {
   return await axios
-    .get(`${AUTH_URL}/fetch?username=${username}`)
-    .then((res) => res.data);
+    .get(`${AUTH_URL}/fetch?username=${username}`).then(res=>res.data)
 }
