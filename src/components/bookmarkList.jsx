@@ -83,7 +83,7 @@ function HackerNewsStory({ storyId }) {
   );
 }
 
-export default function PostList() {
+export default function BookmarkList() {
   return (
     <div>
       <HackerNewsTopStories />
