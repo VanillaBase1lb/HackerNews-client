@@ -183,26 +183,6 @@ export default function HomePage() {
           {/* END Page Section */}
         </main>
         {/* END Page Content */}
-
-        {/* Page Footer */}
-        <footer
-          id="page-footer"
-          className="flex flex-none items-center bg-white"
-        >
-          <div className="text-center flex flex-col md:text-left md:flex-row md:justify-between text-sm container xl:max-w-7xl mx-auto px-4 lg:px-8">
-            <div className="pt-4 pb-1 md:pb-4">
-              <a
-                href="https://tailkit.com"
-                className="font-medium text-blue-600 hover:text-blue-400"
-                target="_blank"
-              >
-                Tailkit
-              </a>{" "}
-              ©
-            </div>
-          </div>
-        </footer>
-        {/* END Page Footer */}
       </div>
       {/* END Page Container */}
     </>

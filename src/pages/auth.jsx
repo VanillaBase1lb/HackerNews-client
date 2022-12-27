@@ -154,12 +154,6 @@ function AuthPage() {
                             />
                             <span className="ml-2">Remember me</span>
                           </label>
-                          <a
-                            href="#"
-                            className="inline-block text-blue-600 hover:text-blue-400"
-                          >
-                            Forgot Password?
-                          </a>
                         </div>
                       </div>
                     </form>
@@ -190,18 +184,6 @@ function AuthPage() {
                 )}
               </div>
               {/* END Sign In Form */}
-
-              {/* Footer */}
-              <div className="text-sm text-gray-500 text-center mt-6">
-                <a
-                  className="font-medium text-blue-600 hover:text-blue-400"
-                  href="https://tailkit.com"
-                  target="_blank"
-                >
-                  Tailkit
-                </a>
-              </div>
-              {/* END Footer */}
             </div>
             {/* END Sign In Section */}
           </div>
